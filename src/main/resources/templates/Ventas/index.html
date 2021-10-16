@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://thieleafo.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+<!-- line awesome icons -->
+<link rel="stylesheet"
+	href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+<link rel="stylesheet" th:href="@{../Estilo/Css/EstiloD.css}"
+	href="../static/Estilo/Css/EstiloD.css" />
+
+<title>Ventas</title>
+
+</head>
+<body>
+	<input type="checkbox" id="nav-toggle">
+	<div class="sidebar">
+		<label for="nav-toggle" class="menu-label"> <span
+			class="las la-bars"></span>
+		</label>
+		<div class="sidebar-menu">
+			<ul>
+				<li><a th:href="@{/Inicio}"><span class="las la-home"></span>
+						<span>Inicio</span></a></li>
+			</ul>
+			<ul>
+				<li><a th:href="@{/Usuarios}"><span class="las la-user-tie"></span>
+						<span>Usuarios</span></a></li>
+			</ul>
+			<ul>
+				<li><a th:href="@{/Clientes}"><span
+						class="las la-handshake"></span> <span>Clientes</span></a></li>
+			</ul>
+			<ul>
+				<li><a th:href="@{/Proveedores}"><span
+						class="las la-cart-arrow-down"></span> <span>Proveedores</span></a></li>
+			</ul>
+			<ul>
+				<li><a th:href="@{/Productos}"><span class="las la-tags"></span>
+						<span>Productos</span></a></li>
+			</ul>
+			<ul>
+				<li><a class="active"><span class="las la-money-bill-alt"></span>
+						<span>Ventas</span></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="main-content">
+		<header>
+			<div class="user-wrapper">
+				<img
+					src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
+					width="40px" height="40px">
+				<div>
+					<h4 th:text="${usuarioSesion.nombre}"></h4>
+					<small th:text="${usuarioSesion.usuario}"></small>
+				</div>
+			</div>
+
+			<h2>Ventas</h2>
+
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="logout-btn">Cerrar Sesión</button>
+			</form>
+
+		</header>
+
+		<main>
+			<div th:if="${param.agregado}" class="action-informer">
+				<p>
+					La venta ha sido <b>registrada</b> correctamente
+				</p>
+			</div>
+			<div class="sales-actions">
+				<div class="card">
+					<div class="card-header-centered">
+						<h3>Realizar venta</h3>
+					</div>
+					<div class="card-body">
+						<form class="sales-inquiry" th:action="@{/ConsultarVenta}">
+
+							<div class="products-data">
+								<div>
+									<p>Producto 1</p>
+									<input type="number" name="codigoPrimero"
+										th:value="${param.codigoPrimero}"
+										placeholder="Código del producto"> <input
+										type="number" name="cantidadPrimero"
+										th:value="${param.cantidadPrimero}" placeholder="Cantidad">
+									<div th:if="${param.faltantePrimero}">Faltan datos para
+										validar el producto, todos los productos deben ser validados
+										para poder realizar la venta</div>
+									<div th:if="${param.errorPrimero}">Los datos
+										proporcionados no coinciden con los registrados en la base de
+										datos</div>
+									<div th:if="${param.resultadoPrimero}">
+										<b> Nombre del producto </b>
+										<p th:text="${param.nombrePrimero}"></p>
+
+										<b> Precio final unitario </b>
+										<p th:text="${param.precioPrimero}"></p>
+
+										<b> Total por <b th:text="${param.cantidadPrimero}"></b>
+											unidades
+										</b>
+										<p th:text="${param.totalPrimero}"></p>
+									</div>
+								</div>
+
+								<div>
+									<p>Producto 2</p>
+									<input type="number" name="codigoSegundo"
+										th:value="${param.codigoSegundo}"
+										placeholder="Código del producto"> <input
+										type="number" name="cantidadSegundo"
+										th:value="${param.cantidadSegundo}" placeholder="Cantidad">
+									<div th:if="${param.faltanteSegundo}">Faltan datos para
+										validar el producto, todos los productos deben ser validados
+										para poder realizar la venta</div>
+									<div th:if="${param.errorSegundo}">Los datos
+										proporcionados no coinciden con los registrados en la base de
+										datos</div>
+									<div th:if="${param.resultadoSegundo}">
+										<b> Nombre del producto </b>
+										<p th:text="${param.nombreSegundo}"></p>
+
+										<b> Precio final unitario </b>
+										<p th:text="${param.precioSegundo}"></p>
+
+										<b> Total por <b th:text="${param.cantidadSegundo}"></b>
+											unidades
+										</b>
+										<p th:text="${param.totalSegundo}"></p>
+									</div>
+								</div>
+
+								<div>
+									<p>Producto 3</p>
+									<input type="number" name="codigoTercero"
+										th:value="${param.codigoTercero}"
+										placeholder="Código del producto"> <input
+										type="number" name="cantidadTercero"
+										th:value="${param.cantidadTercero}" placeholder="Cantidad">
+									<div th:if="${param.faltanteTercero}">Faltan datos para
+										validar el producto, todos los productos deben ser validados
+										para poder realizar la venta</div>
+									<div th:if="${param.errorTercero}">Los datos
+										proporcionados no coinciden con los registrados en la base de
+										datos</div>
+									<div th:if="${param.resultadoTercero}">
+										<b> Nombre del producto </b>
+										<p th:text="${param.nombreTercero}"></p>
+
+										<b> Precio final unitario </b>
+										<p th:text="${param.precioTercero}"></p>
+
+										<b> Total por <b th:text="${param.cantidadTercero}"></b>
+											unidades
+										</b>
+										<p th:text="${param.totalTercero}"></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="consult-products-data">
+								<input type="number" name="cedulaCliente"
+									th:value="${param.cedulaCliente}"
+									placeholder="Cédula del cliente" required> <input
+									type="number" name="cedulaUsuario"
+									th:value="${param.cedulaUsuario}"
+									placeholder="Cédula del usuario" required>
+								<button type="submit">Consultar</button>
+							</div>
+
+							<div th:if="${param.errorCliente}">
+								<p>
+									No se encontró el cliente con la cédula <b
+										th:text="${param.cedulaCliente}"></b> en la base de datos
+								</p>
+							</div>
+							<div th:if="${param.errorUsuario}">
+								<p>
+									No se encontró el usuario con la cédula <b
+										th:text="${param.cedulaUsuario}"></b> en la base de datos
+								</p>
+							</div>
+
+							<div th:if="${param.validable}">
+								<b th:if="${param.cliente}">Cliente</b>
+								<p th:if="${param.cliente}" th:text="${param.cliente}"></p>
+								<b th:if="${param.usuario}">Usuario</b>
+								<p th:if="${param.usuario}" th:text="${param.usuario}"></p>
+								<b> Total de venta </b>
+								<p th:text="${param.total}"></p>
+								<b> IVA </b>
+								<p th:text="${param.iva}"></p>
+								<b> Total con IVA </b>
+								<p th:text="${param.totalIva}"></p>
+								<button type="submit" name="validar" value="true">Validar
+									Venta</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header-centered">
+						<h3>Lista de ventas</h3>
+					</div>
+					<div class="card-body">
+						<div class="sales-table">
+							<table>
+								<thead>
+									<tr>
+										<td>Codigo venta</td>
+										<td>Cedula cliente</td>
+										<td>Cedula usuario</td>
+										<td>Precio</td>
+										<td>Iva</td>
+										<td>Total</td>
+										<td>Opciones</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each=" venta : ${ListaVentas}">
+										<td th:text="${venta.codigoVenta}"></td>
+										<td th:text="${venta.cedulaCliente}"></td>
+										<td th:text="${venta.cedulaUsuario}"></td>
+										<td th:text="${venta.precio}"></td>
+										<td th:text="${venta.iva}"></td>
+										<td th:text="${venta.total}"></td>
+										<td class="listed-options-container">
+											<form th:action="@{/DetallesVenta}" method="get">
+												<button type="submit" name="codigoVenta" th:value="${venta.codigoVenta}"
+													class="listed-altern">Ver detalles</button>
+											</form>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

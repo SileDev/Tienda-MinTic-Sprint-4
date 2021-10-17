@@ -25,6 +25,9 @@ public class ImplementacionClientes {
 
 		jdbcTemp.execute("INSERT INTO clientes (cedula, nombre, direccion, telefono, correo) VALUES ('" + cedula
 				+ "', '" + nombre + "', '" + direccion + "', '" + telefono + "', '" + correo + "')");
+		
+		jdbcTemp.execute("INSERT INTO ventas_clientes (cedula_cliente, ventas, total_ventas) Values ('" + cedula
+				+ "', '0', '0')");
 
 	}
 

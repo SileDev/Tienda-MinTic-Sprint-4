@@ -50,6 +50,10 @@
 				<li><a class="active"><span class="las la-money-bill-alt"></span>
 						<span>Ventas</span></a></li>
 			</ul>
+			<ul>
+				<li><a th:href="@{/Reportes}"><span class="las la-book"></span>
+						<span>Reportes</span></a></li>
+			</ul>
 		</div>
 	</div>
 
@@ -89,7 +93,7 @@
 
 							<div class="products-data">
 								<div>
-									<p>Producto 1</p>
+									<p class="texto-producto">Producto 1</p>
 									<input type="number" name="codigoPrimero"
 										th:value="${param.codigoPrimero}"
 										placeholder="Código del producto"> <input
@@ -101,22 +105,22 @@
 									<div th:if="${param.errorPrimero}">Los datos
 										proporcionados no coinciden con los registrados en la base de
 										datos</div>
-									<div th:if="${param.resultadoPrimero}">
-										<b> Nombre del producto </b>
+									<div class="resumen-producto" th:if="${param.resultadoPrimero}">
+										<b> Nombre del producto: </b>
 										<p th:text="${param.nombrePrimero}"></p>
 
-										<b> Precio final unitario </b>
+										<b> Precio final unitario: </b>
 										<p th:text="${param.precioPrimero}"></p>
 
 										<b> Total por <b th:text="${param.cantidadPrimero}"></b>
-											unidades
+											unidades:
 										</b>
 										<p th:text="${param.totalPrimero}"></p>
 									</div>
 								</div>
 
 								<div>
-									<p>Producto 2</p>
+									<p class="texto-producto">Producto 2</p>
 									<input type="number" name="codigoSegundo"
 										th:value="${param.codigoSegundo}"
 										placeholder="Código del producto"> <input
@@ -128,22 +132,22 @@
 									<div th:if="${param.errorSegundo}">Los datos
 										proporcionados no coinciden con los registrados en la base de
 										datos</div>
-									<div th:if="${param.resultadoSegundo}">
-										<b> Nombre del producto </b>
+									<div class="resumen-producto" th:if="${param.resultadoSegundo}">
+										<b> Nombre del producto: </b>
 										<p th:text="${param.nombreSegundo}"></p>
 
-										<b> Precio final unitario </b>
+										<b> Precio final unitario: </b>
 										<p th:text="${param.precioSegundo}"></p>
 
 										<b> Total por <b th:text="${param.cantidadSegundo}"></b>
-											unidades
+											unidades:
 										</b>
 										<p th:text="${param.totalSegundo}"></p>
 									</div>
 								</div>
 
 								<div>
-									<p>Producto 3</p>
+									<p class="texto-producto">Producto 3</p>
 									<input type="number" name="codigoTercero"
 										th:value="${param.codigoTercero}"
 										placeholder="Código del producto"> <input
@@ -155,26 +159,26 @@
 									<div th:if="${param.errorTercero}">Los datos
 										proporcionados no coinciden con los registrados en la base de
 										datos</div>
-									<div th:if="${param.resultadoTercero}">
-										<b> Nombre del producto </b>
+									<div class="resumen-producto" th:if="${param.resultadoTercero}">
+										<b> Nombre del producto: </b>
 										<p th:text="${param.nombreTercero}"></p>
 
-										<b> Precio final unitario </b>
+										<b> Precio final unitario: </b>
 										<p th:text="${param.precioTercero}"></p>
 
 										<b> Total por <b th:text="${param.cantidadTercero}"></b>
-											unidades
+											unidades:
 										</b>
 										<p th:text="${param.totalTercero}"></p>
 									</div>
 								</div>
 							</div>
 
-							<div class="consult-products-data">
+							<div class="consult-products-data consultar-realizar-venta">
 								<input type="number" name="cedulaCliente"
 									th:value="${param.cedulaCliente}"
-									placeholder="Cédula del cliente" required> <input
-									type="number" name="cedulaUsuario"
+									placeholder="Cédula del cliente" required> 
+								<input type="number" name="cedulaUsuario"
 									th:value="${param.cedulaUsuario}"
 									placeholder="Cédula del usuario" required>
 								<button type="submit">Consultar</button>
@@ -193,17 +197,20 @@
 								</p>
 							</div>
 
-							<div th:if="${param.validable}">
-								<b th:if="${param.cliente}">Cliente</b>
+							<div class="resumen-realizar-venta-cliente" th:if="${param.validable}">
+								<b th:if="${param.cliente}">Cliente:</b>
 								<p th:if="${param.cliente}" th:text="${param.cliente}"></p>
-								<b th:if="${param.usuario}">Usuario</b>
+								<b th:if="${param.usuario}">Usuario:</b>
 								<p th:if="${param.usuario}" th:text="${param.usuario}"></p>
-								<b> Total de venta </b>
-								<p th:text="${param.total}"></p>
+								<b> Total de venta: </b>
+								<p th:text="${param.total}">$</p>
 								<b> IVA </b>
 								<p th:text="${param.iva}"></p>
 								<b> Total con IVA </b>
-								<p th:text="${param.totalIva}"></p>
+								<p th:text="${param.totalIva}">$</p>
+								
+							</div>
+							<div class="validar-venta">
 								<button type="submit" name="validar" value="true">Validar
 									Venta</button>
 							</div>
@@ -217,8 +224,8 @@
 					</div>
 					<div class="card-body">
 						<div class="sales-table">
-							<table>
-								<thead>
+							<table class="table-lista-ventas">
+								<thead class="head-table-lista-ventas">
 									<tr>
 										<td>Codigo venta</td>
 										<td>Cedula cliente</td>
@@ -229,7 +236,7 @@
 										<td>Opciones</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbody-lista-ventas">
 									<tr th:each=" venta : ${ListaVentas}">
 										<td th:text="${venta.codigoVenta}"></td>
 										<td th:text="${venta.cedulaCliente}"></td>
@@ -237,10 +244,10 @@
 										<td th:text="${venta.precio}"></td>
 										<td th:text="${venta.iva}"></td>
 										<td th:text="${venta.total}"></td>
-										<td class="listed-options-container">
+										<td class="listed-options-container ver-detalles-container">
 											<form th:action="@{/DetallesVenta}" method="get">
 												<button type="submit" name="codigoVenta" th:value="${venta.codigoVenta}"
-													class="listed-altern">Ver detalles</button>
+													class="listed-altern btn-detalles">Ver detalles</button>
 											</form>
 										</td>
 									</tr>

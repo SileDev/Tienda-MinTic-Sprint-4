@@ -42,6 +42,12 @@ public class ControladorProductos {
 
 		modelo.addAttribute("ListaProductos", ListaProductos);
 		
+		File ruta = new File("uploaded");
+
+		if (!ruta.exists()) {
+			ruta.mkdirs();
+		}
+		
 		return "Productos/index";
 		
 	}

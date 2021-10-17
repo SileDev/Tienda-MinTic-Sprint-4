@@ -586,8 +586,7 @@ td {
 
 .products-data{
 	display: grid; 
-	grid-template-columns: 1fr 1fr 1fr; 
-	grid-template-rows: 1fr; 
+	grid-template-columns: repeat(3, 1fr);  
 	gap: 20px; 
 	grid-template-areas: ". . .";
 	margin-bottom: 20px;
@@ -596,6 +595,7 @@ td {
 .products-data input{
 	width: calc(48% - 3px);
 	margin: .5%;
+	padding: 10px;
 }
 
 .consult-products-data{
@@ -717,4 +717,281 @@ td {
 		". .";
 	gap: 20px;
 	margin: 0 0 20px;
+}
+
+/*Estilos para reportes*/
+
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: none;
+	border-radius: 5px 0 0 5px;
+	display: table-cell;
+	padding: 3px 10px;
+	background-color: white;
+	text-align: left;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+.divTableCell input {
+	font-size: 0.8em;
+	width: auto;
+	padding: 10px 2px;
+	border: 0.5px solid gray;
+	outline: none;
+	border-radius: 5px 5px 5px 5px;
+	outline: none;
+	background-color: #ffffffcc;
+	font-size: 0.8em;
+	font-weight: 200;
+	letter-spacing: 1px;
+}
+
+.divTableCell input:hover{
+	padding: 8px 0px;
+    border: 2px solid #674baf;
+	width: auto;
+}
+
+.divTableCell input:focus{
+	padding: 8px 0px;
+	border: 2px solid #674baf;
+}
+
+.divTableCell button{
+	width: auto;
+	padding: 8px 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;
+}
+
+.space {
+	margin-right: 1em;
+}
+
+.divTableCell button.accept {
+	margin-left: 4em;
+}
+
+div.card-body ul li button {
+	width: 80%;
+	margin: 5px 10% 0;
+	padding: 10px 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--button-bg);
+	cursor: pointer;
+}
+.report-option {
+	gap: 20px;
+	margin: 0 0 20px;
+}
+
+div.report-option {
+	display: flex;
+	justify-content: center;
+}
+
+.report-option-bar{
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-evenly;
+	
+}
+
+.report-option-bar button{
+	padding: 15px 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;
+	/*margin-right: 4em;*/
+	align-content: center;
+	justify-content: center;
+}
+
+.users-table{
+	margin-bottom: 20px;
+}
+
+.customers-table{
+	margin-bottom: 20px;
+}
+
+.total-sells-table{
+	margin-bottom: 20px;
+}
+
+div.card-body table thead {
+	text-align: center !important;
+}
+
+div.card-body span {
+	font-weight: 600;
+	text-align: right;
+	display: flex;
+	align-content: center;
+	justify-content: flex-end;
+	padding-right: 1.2em;
+}
+
+div.card-body span input{
+	text-align: center;
+	font-weight: 600;
+}
+
+div.card-body ul li button.active {
+	background-color: #7140ec;
+	/*border: 2px solid #7140ec;*/
+	font-weight: 600;
+}
+
+/*Grid botones Reportes*/
+.grid-reportes {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+}
+
+/**LISTA DE VENTAS**/
+.table-lista-ventas {
+	width:100%;
+}
+
+.tbody-lista-ventas {
+	text-align: center;
+}
+.btn-detalles {
+	padding: 10px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;	
+}
+
+.ver-detalles-container {
+	display: flex;
+	justify-content: center;
+}
+
+.consultar-realizar-venta {
+	display:grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-top: 45px;
+	gap: 25px;
+}
+
+.consultar-realizar-venta input {
+	padding:10px;
+}
+.regresar {
+	display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+.consultar-realizar-venta button, .btn-regresar {
+	padding: 10px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+
+.btn-regresar {
+	padding: 15px 90px;
+}
+
+.texto-producto {
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+
+/**DETALLE DE VENTA**/
+.table-dettalle-venta {
+	width:100%;
+}
+
+.tbody-detalle-venta {
+	text-align: center;
+}
+
+/**VENTAS POR CLIENTE**/
+.table-ventas-cliente {
+	width:100%;
+}
+
+.tbody-ventas-cliente {
+	text-align: center;
+}
+
+/** REALIZAR VENTA - RESUMEN DE PRODUCTOS**/
+.resumen-producto {
+	display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 30px;
+}
+
+.resumen-producto b, .resumen-producto p {
+	margin-bottom: 10px;
+}
+
+.resumen-realizar-venta-cliente {
+	display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 40px;
+}
+
+.validar-venta {
+	display:flex;
+	justify-content: center;
+	margin: 2rem 0;
+}
+.validar-venta button {
+	padding: 10px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;
 }

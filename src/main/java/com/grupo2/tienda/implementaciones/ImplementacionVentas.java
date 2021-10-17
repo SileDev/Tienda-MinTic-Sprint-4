@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.grupo2.tienda.modelos.VentasClienteDTO;
 import com.grupo2.tienda.modelos.DetalleVentaDTO;
 import com.grupo2.tienda.modelos.VentaDTO;
 
@@ -29,6 +30,33 @@ public class ImplementacionVentas {
 				"INSERT INTO ventas (codigo_venta, cedula_cliente, cedula_usuario, precio, iva, total) Values ('"
 						+ codigoVenta + "', '" + cedulaCliente + "', '" + cedulaUsuario + "', '" + precio + "', '" + iva
 						+ "', '" + total + "')");
+
+		List<VentasClienteDTO> ResultadoBusqueda = jdbcTemp.query(
+				"SELECT * FROM ventas_clientes WHERE cedula_cliente = '" + cedulaCliente + "'",
+				new RowMapper<VentasClienteDTO>() {
+
+					@Override
+					public VentasClienteDTO mapRow(ResultSet resultado, int indice) throws SQLException {
+
+						VentasClienteDTO ventasCliente = new VentasClienteDTO(
+
+								resultado.getLong("cedula_cliente"), resultado.getLong("ventas"),
+								resultado.getDouble("total_ventas")
+
+				);
+
+						return ventasCliente;
+
+					}
+
+				});
+
+		long ventas = ResultadoBusqueda.get(0).getVentas() + 1;
+
+		double totalVentas = ResultadoBusqueda.get(0).getTotalVentas() + total;
+
+		jdbcTemp.execute("UPDATE ventas_clientes SET ventas = '" + ventas + "', total_ventas = '" + totalVentas
+				+ "' WHERE cedula_cliente = '" + cedulaCliente + "'");
 
 	}
 
@@ -92,6 +120,30 @@ public class ImplementacionVentas {
 
 		return Resultado;
 
+	}
+
+	public List<VentasClienteDTO> ListarVentasClientes() {
+
+		List<VentasClienteDTO> Resultado = jdbcTemp.query("SELECT * FROM ventas_clientes",
+				new RowMapper<VentasClienteDTO>() {
+
+					@Override
+					public VentasClienteDTO mapRow(ResultSet resultado, int indice) throws SQLException {
+
+						VentasClienteDTO ventasCliente = new VentasClienteDTO(
+
+								resultado.getLong("cedula_cliente"), resultado.getLong("ventas"),
+								resultado.getDouble("total_ventas")
+
+				);
+
+						return ventasCliente;
+
+					}
+
+				});
+
+		return Resultado;
 	}
 
 }

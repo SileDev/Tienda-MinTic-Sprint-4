@@ -50,6 +50,10 @@
 				<li><a class="active"><span class="las la-money-bill-alt"></span>
 						<span>Ventas</span></a></li>
 			</ul>
+			<ul>
+				<li><a th:href="@{/Reportes}"><span class="las la-book"></span>
+						<span>Reportes</span></a></li>
+			</ul>
 		</div>
 	</div>
 
@@ -81,7 +85,7 @@
 					</div>
 					<div class="card-body">
 						<div class="sales-details">
-							<table>
+							<table class="table-dettalle-venta">
 								<thead>
 									<tr>
 										<td>Codigo venta</td>
@@ -92,7 +96,7 @@
 										<td>Total</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbody-detalle-venta">
 									<tr th:each=" detalleVenta : ${ListaDetalles}">
 										<td th:text="${detalleVenta.codigoVenta}"></td>
 										<td th:text="${detalleVenta.codigoProducto}"></td>
@@ -104,8 +108,8 @@
 								</tbody>
 							</table>
 						</div>
-						<form>
-							<input type="button" value="¡Regresar!" onclick="history.back()">
+						<form class="regresar">
+							<input class="btn-regresar" type="button" value="Regresar" onclick="history.back()">
 						</form>
 					</div>
 				</div>

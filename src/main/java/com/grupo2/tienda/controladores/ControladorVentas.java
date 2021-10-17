@@ -52,8 +52,6 @@ public class ControladorVentas {
 
 		List<VentaDTO> ListaVentas = impVentas.ListarVentas();
 
-		System.out.println(ListaVentas.size());
-
 		modelo.addAttribute("ListaVentas", ListaVentas);
 
 		return "Ventas/index";
@@ -310,8 +308,6 @@ public class ControladorVentas {
 			@Param("codigoTercero") String codigoTercero, @Param("cantidadTercero") String cantidadTercero,
 			@Param("cedulaCliente") String cedulaCliente, @Param("cedulaUsuario") String cedulaUsuario,
 			@Param("codigoVenta") String codigoVenta) {
-
-		System.out.println("Venta registrada en la base de datos");
 
 		int cantidadProductos = 0;
 
